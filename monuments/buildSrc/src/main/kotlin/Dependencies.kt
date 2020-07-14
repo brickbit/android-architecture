@@ -26,7 +26,7 @@ object Plugins{
 }
 object AndroidSdk {
     const val min = 17
-    const val compile = 27
+    const val compile = 28
     const val target = compile
     const val applicationId = "com.admin.monuments"
     const val versionName = "20200612"
