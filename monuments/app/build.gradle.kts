@@ -3,7 +3,6 @@ plugins {
     kotlin(Plugins.kotlinAndroid)
     kotlin(Plugins.androidExtensions)
     kotlin(Plugins.kotlinKapt)
-    id(Plugins.realm)
 }
 
 
@@ -35,10 +34,10 @@ dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include"  to listOf("*.jar"))))
     implementation (Libraries.kotlinStdLib)
 
-    implementation ("com.android.support:appcompat-v7:27.1.1")
-    implementation ("com.android.support:design:27.1.1")
-    implementation ("com.android.support:cardview-v7:27.1.1")
-    implementation ("com.android.support.constraint:constraint-layout:1.1.3")
+    implementation ("androidx.appcompat:appcompat:1.0.0")
+    implementation ("com.google.android.material:material:1.0.0")
+    implementation ("androidx.cardview:cardview:1.0.0")
+    implementation ("androidx.constraintlayout:constraintlayout:1.1.3")
 
     implementation (Libraries.glide)
 

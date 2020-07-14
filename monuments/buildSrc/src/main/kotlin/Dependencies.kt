@@ -4,13 +4,11 @@ object Build {
     object Versions {
         const val buildToolsVersion = "4.0.0"
         const val googleServicesVersion = "4.2.0"
-        const val realmVersion = "4.2.0"
     }
 
     const val androidGradlePlugin = "com.android.tools.build:gradle:${Versions.buildToolsVersion}"
     const val kotlinGradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
     const val googleServicesPlugin = "com.google.gms:google-services:${Versions.googleServicesVersion}"//FIXME
-    const val realmGradlePlugin = "io.realm:realm-gradle-plugin:${Versions.realmVersion}"
 }
 
 object Plugins{
@@ -19,7 +17,6 @@ object Plugins{
     const val androidLibrary = "com.android.library"
     const val androidExtensions = "android.extensions"
     const val kotlinKapt = "kapt"
-    const val realm = "realm-android"
     const val kotlin = "kotlin"
     const val javaLibrary = "java-library"
     const val googleServices = "com.google.gms.google-services"//FIXME

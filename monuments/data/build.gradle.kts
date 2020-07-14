@@ -2,7 +2,6 @@ plugins {
     id(Plugins.androidLibrary)
     kotlin(Plugins.kotlinAndroid)
     kotlin(Plugins.kotlinKapt)
-    id(Plugins.realm)
 }
 
 android {
