@@ -37,11 +37,11 @@ dependencies {
 
     implementation (Libraries.retrofit)
     implementation (Libraries.gson)
-    implementation ("com.squareup.okhttp3:okhttp:3.9.1")
+    implementation (Libraries.okHttp)
     implementation (Libraries.okHttpInterceptor)
 
-    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.2.1")
-    implementation ("com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2")
+    implementation (Libraries.coroutines)
+    implementation (Libraries.retrofitAdapter)
 
     testImplementation (Libraries.jUnit)
     testImplementation (Libraries.mockito)

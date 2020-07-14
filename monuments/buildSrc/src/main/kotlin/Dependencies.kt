@@ -33,14 +33,19 @@ object AndroidSdk {
 
 object Libraries {
     private object Versions {
-        const val appCompat = "27.1.1"
-        const val cardView = "27.1.1"
+        const val appCompat = "1.0.0"
+        const val cardView = "1.0.0"
         const val constraintLayout = "1.1.3"
+        const val material = "1.0.0"
+
         const val glide = "4.9.0"
         const val kodein = "4.1.0"
         const val kodeinAndroid = "4.1.0"
 
+        const val coroutinesVersion = "1.2.1"
+
         const val retrofit = "2.6.0"
+        const val retrofitAdapter = "0.9.2"
         const val gson = "2.3.0"
         const val okHttp = "3.9.1"
         const val okHttpInterceptor = "3.9.1"
@@ -57,12 +62,17 @@ object Libraries {
     const val constraintLayout =
             "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
     const val cardview = "androidx.cardview:cardview:${Versions.cardView}"
+    const val material = "com.google.android.material:material:${Versions.material}"
 
     const val glide = ("com.github.bumptech.glide:glide:${Versions.glide}")
     const val kodein = ("com.github.salomonbrys.kodein:kodein:${Versions.kodein}")
     const val kodeinAndroid = ("com.github.salomonbrys.kodein:kodein-android:${Versions.kodeinAndroid}")
 
+    const val coroutines ="org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutinesVersion}"
+    const val coroutinesAndroid = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutinesVersion}"
+
     const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
+    const val retrofitAdapter = "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:${Versions.retrofitAdapter}"
     const val gson = "com.squareup.retrofit2:converter-gson:${Versions.gson}"
     const val okHttp = "com.squareup.okhttp3:okhttp:${Versions.okHttp}"
     const val okHttpInterceptor = "com.squareup.okhttp3:logging-interceptor:${Versions.okHttpInterceptor}"

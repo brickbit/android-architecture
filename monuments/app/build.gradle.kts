@@ -34,18 +34,18 @@ dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include"  to listOf("*.jar"))))
     implementation (Libraries.kotlinStdLib)
 
-    implementation ("androidx.appcompat:appcompat:1.0.0")
-    implementation ("com.google.android.material:material:1.0.0")
-    implementation ("androidx.cardview:cardview:1.0.0")
-    implementation ("androidx.constraintlayout:constraintlayout:1.1.3")
+    implementation (Libraries.appCompat)
+    implementation (Libraries.material)
+    implementation (Libraries.cardview)
+    implementation (Libraries.constraintLayout)
 
     implementation (Libraries.glide)
 
     implementation (Libraries.kodein)
     implementation (Libraries.kodeinAndroid)
 
-    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.2.1")
-    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.2.1")
+    implementation (Libraries.coroutines)
+    implementation (Libraries.coroutinesAndroid)
 
     testImplementation (Libraries.jUnit)
     testImplementation (Libraries.mockito)
