@@ -43,7 +43,7 @@ object Libraries {
         const val kodein = "4.1.0"
         const val kodeinAndroid = "4.1.0"
 
-        const val retrofit = "2.3.0"
+        const val retrofit = "2.6.0"
         const val gson = "2.3.0"
         const val okHttp = "3.9.1"
         const val okHttpInterceptor = "3.9.1"
