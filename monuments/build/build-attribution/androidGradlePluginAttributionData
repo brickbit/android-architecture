@@ -1,0 +1,1 @@
+{"taskNameToClassNameMap":[{"taskName":"compileKotlin","className":"org.jetbrains.kotlin.gradle.tasks.KotlinCompile"}],"tasksSharingOutput":[]}
