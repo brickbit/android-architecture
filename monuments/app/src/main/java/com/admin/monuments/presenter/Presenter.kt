@@ -1,26 +1,37 @@
 package com.admin.monuments.presenter
 
+import com.admin.domain.model.Either
+import com.admin.domain.model.Result
 import com.admin.monuments.error.ErrorHandler
+import com.admin.monuments.executor.Executor
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.withContext
 
 /**
  * Presenter
  */
-abstract class Presenter<out V : Presenter.View>(protected val errorHandler: ErrorHandler, val view: V) {
+abstract class Presenter<out V : Presenter.View>(
+        protected val errorHandler: ErrorHandler,
+        protected val executor: Executor,
+        val view: V
+) {
 
-    abstract fun initialize()
+    private val job = SupervisorJob()
 
-    abstract fun resume()
+    protected val scope = CoroutineScope(job + executor.main)
 
-    abstract fun stop()
+    abstract fun attach()
 
-    abstract fun destroy()
+    fun detach() = job.cancel()
 
-    protected fun onError(callback: (String) -> Unit): (Throwable) -> Unit = {
+    protected suspend fun <T> execute(f: suspend () -> Either<Result.Error, T>): Either<Result.Error, T> = withContext(executor.background) { f() }
+
+    protected fun onError(callback: (String) -> Unit): (Result.Error) -> Unit = {
         view.hideProgress()
 
-        val message = errorHandler.convert(it as Exception)
+        val message = errorHandler.convert(it)
 
-//        Crashlytics.logException(it)
         callback(message)
     }
 

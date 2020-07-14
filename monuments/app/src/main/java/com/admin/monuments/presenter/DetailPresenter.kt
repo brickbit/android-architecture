@@ -1,34 +1,35 @@
 package com.admin.monuments.presenter
 
-import com.admin.domain.interactor.monuments.GetMonumentItemUseCase
 import com.admin.domain.model.MonumentItemDto
+import com.admin.domain.repository.MonumentRepository
 import com.admin.domain.repository.RefreshStrategy
 import com.admin.monuments.error.ErrorHandler
 import com.admin.monuments.mapper.toView
 import com.admin.monuments.model.MonumentView
+import kotlinx.coroutines.launch
 
-class DetailPresenter(private val getMonumentItemUseCase: GetMonumentItemUseCase,
+class DetailPresenter(private val repository: MonumentRepository,
                       errorHandler: ErrorHandler,
+                      executor: com.admin.monuments.executor.Executor,
                       view: DetailPresenter.View):
-        Presenter<DetailPresenter.View>(errorHandler,view){
-    override fun initialize() {
+        Presenter<DetailPresenter.View>(errorHandler,executor = executor, view = view){
+
+    override fun attach() {
         view.getId()
         getItems()
     }
 
-    override fun resume() {
-        //Nothing to do yet
-    }
-
-    override fun stop() {
-        //Nothing to do yet
-    }
-
-    override fun destroy() {
-        //getMonumentItemUseCase.clear()
-    }
-
     private fun getItems(){
+
+        scope.launch {
+            view.showProgress()
+            execute { repository.getMonumentItem(view.getId(), RefreshStrategy.NETWORK) }.fold(
+                    error = {view.showError(it.toString())},
+                    success = {showItem(it)}
+            )
+            view.hideProgress()
+        }
+        /*
         //view.showItem(fakeItem())
         //view.hideProgress()
         var id = view.getId()
@@ -46,7 +47,7 @@ class DetailPresenter(private val getMonumentItemUseCase: GetMonumentItemUseCase
                     view.showError(it)
                 }
 
-        )
+        )*/
     }
 
     fun fakeItem(): MonumentView =

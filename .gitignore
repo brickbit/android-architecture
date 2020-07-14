@@ -6,3 +6,15 @@
 monuments/buildSrc/build/*
 
 monuments/.gradle/6.1.1/*
+
+monuments/.gradle/buildOutputCleanup/
+
+monuments/.gradle/checksums/
+
+monuments/build/build-attribution/
+
+monuments/buildSrc/.gradle/6.1.1/executionHistory/
+
+monuments/buildSrc/.gradle/6.1.1/fileHashes/
+
+monuments/buildSrc/.gradle/buildOutputCleanup/

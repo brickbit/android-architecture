@@ -1,12 +1,13 @@
 package com.admin.domain.repository
 
+import com.admin.domain.model.Either
 import com.admin.domain.model.MonumentItemDto
 import com.admin.domain.model.MonumentListDto
-import io.reactivex.Observable
+import com.admin.domain.model.Result
 
 interface MonumentRepository {
-    fun getMonumentList(refreshStrategy: RefreshStrategy): Observable<MonumentListDto>
+    suspend fun getMonumentList(refreshStrategy: RefreshStrategy): Either<Result.Error, MonumentListDto>
 
-    fun getMonumentItem(id: Long, refreshStrategy: RefreshStrategy): Observable<MonumentItemDto>
+    suspend fun getMonumentItem(id: Long, refreshStrategy: RefreshStrategy): Either<Result.Error, MonumentItemDto>
 
 }

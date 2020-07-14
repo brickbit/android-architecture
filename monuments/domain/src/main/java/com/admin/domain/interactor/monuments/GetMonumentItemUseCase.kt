@@ -1,7 +1,6 @@
 package com.admin.domain.interactor.monuments
-
+/*
 import com.admin.domain.executor.Executor
-import com.admin.domain.interactor.ObservableInteractor
 import com.admin.domain.model.MonumentItemDto
 import com.admin.domain.repository.MonumentRepository
 import com.admin.domain.repository.RefreshStrategy
@@ -29,4 +28,4 @@ class GetMonumentItemUseCase(private val repository: MonumentRepository,
 
     override fun buildObservable(): Observable<MonumentItemDto> =
             repository.getMonumentItem(id = def_id,refreshStrategy = refreshStrategy)
-}
+}*/
