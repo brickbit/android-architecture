@@ -1,2 +1,8 @@
 
 .DS_Store
+
+.idea/
+
+monuments/buildSrc/build/*
+
+monuments/.gradle/6.1.1/*

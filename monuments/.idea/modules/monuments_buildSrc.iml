@@ -92,7 +92,7 @@
     <orderEntry type="library" exported="" scope="PROVIDED" name="Gradle: gradle-kotlin-dsl-6.1.1" level="project" />
     <orderEntry type="library" exported="" scope="PROVIDED" name="Gradle: gradle-kotlin-dsl-tooling-models-6.1.1" level="project" />
     <orderEntry type="library" exported="" scope="TEST" name="Gradle: gradle-test-kit-6.1.1" level="project" />
-    <orderEntry type="library" exported="" scope="TEST" name="Gradle: _Users_rupestre_Downloads_App_android_master_monuments_buildSrc_build_pluginUnderTestMetadata" level="project" />
+    <orderEntry type="library" exported="" scope="TEST" name="Gradle: _Users_rupestre_Documents_android_architecture_monuments_buildSrc_build_pluginUnderTestMetadata" level="project" />
     <orderEntry type="library" exported="" name="Gradle: monuments_buildSrc.buildSrc" level="project" />
   </component>
 </module>
