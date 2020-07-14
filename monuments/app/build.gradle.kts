@@ -45,8 +45,8 @@ dependencies {
     implementation (Libraries.kodein)
     implementation (Libraries.kodeinAndroid)
 
-    implementation (Libraries.rxjava)
-    implementation (Libraries.rxandroid)
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.2.1")
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.2.1")
 
     testImplementation (Libraries.jUnit)
     testImplementation (Libraries.mockito)

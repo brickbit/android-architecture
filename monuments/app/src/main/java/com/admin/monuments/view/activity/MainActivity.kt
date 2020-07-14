@@ -14,8 +14,7 @@ import com.github.salomonbrys.kodein.provider
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.view_progress.*
 
-class MainActivity :  RootActivity<MainPresenter.View>(), MainPresenter.View {
-
+class MainActivity : RootActivity<MainPresenter.View>(), MainPresenter.View {
 
     override val presenter: MainPresenter by instance()
 
@@ -24,7 +23,8 @@ class MainActivity :  RootActivity<MainPresenter.View>(), MainPresenter.View {
     override val activityModule: Kodein.Module= Kodein.Module {
         bind<MainPresenter>() with provider {
             MainPresenter(
-                    getMonumentListUseCase = instance(),
+                    executor = instance(),
+                    repository = instance(),
                     view = this@MainActivity,
                     errorHandler = instance()
             )

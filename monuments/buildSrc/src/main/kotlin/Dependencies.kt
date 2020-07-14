@@ -43,10 +43,6 @@ object Libraries {
         const val kodein = "4.1.0"
         const val kodeinAndroid = "4.1.0"
 
-        const val rxJava = "2.1.9"
-        const val rxAndroid = "2.0.1"
-        const val rxRetrofit = "2.3.0"
-
         const val retrofit = "2.3.0"
         const val gson = "2.3.0"
         const val okHttp = "3.9.1"
@@ -68,10 +64,6 @@ object Libraries {
     const val glide = ("com.github.bumptech.glide:glide:${Versions.glide}")
     const val kodein = ("com.github.salomonbrys.kodein:kodein:${Versions.kodein}")
     const val kodeinAndroid = ("com.github.salomonbrys.kodein:kodein-android:${Versions.kodeinAndroid}")
-
-    const val rxjava = "io.reactivex.rxjava2:rxjava:${Versions.rxJava}"
-    const val rxandroid = "io.reactivex.rxjava2:rxandroid:${Versions.rxAndroid}"
-    const val rxRetrofit = "com.squareup.retrofit2:adapter-rxjava2:${Versions.rxRetrofit}"
 
     const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
     const val gson = "com.squareup.retrofit2:converter-gson:${Versions.gson}"

@@ -1,13 +1,9 @@
 package com.admin.monuments.view.activity
 
-import android.support.v7.app.AppCompatActivity
-import android.os.Bundle
 import android.util.Log
 import com.admin.monuments.R
-import com.admin.monuments.extension.showMe
 import com.admin.monuments.model.MonumentView
 import com.admin.monuments.presenter.DetailPresenter
-import com.admin.monuments.presenter.Presenter
 import com.github.salomonbrys.kodein.Kodein
 import com.github.salomonbrys.kodein.bind
 import com.github.salomonbrys.kodein.instance
@@ -31,7 +27,8 @@ class DetailActivity :  RootActivity<DetailPresenter.View>(), DetailPresenter.Vi
     override val activityModule: Kodein.Module = Kodein.Module {
         bind<DetailPresenter>() with provider {
             DetailPresenter(
-                    getMonumentItemUseCase = instance(),
+                    executor = instance(),
+                    repository = instance(),
                     view = this@DetailActivity,
                     errorHandler = instance()
             )

@@ -1,14 +1,8 @@
 package com.admin.monuments.executor
 
-import com.admin.domain.executor.Executor
-import io.reactivex.Scheduler
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
+import kotlinx.coroutines.CoroutineDispatcher
 
-/**
- * RxExecutor
- */
-class RxExecutor : Executor {
-    override fun new(): Scheduler = Schedulers.io()
-    override fun main(): Scheduler = AndroidSchedulers.mainThread()
+interface Executor {
+    val main: CoroutineDispatcher
+    val background: CoroutineDispatcher
 }

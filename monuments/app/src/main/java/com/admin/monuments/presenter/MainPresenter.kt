@@ -1,33 +1,24 @@
 package com.admin.monuments.presenter
 
-import android.util.Log
-import com.admin.domain.interactor.monuments.GetMonumentListUseCase
 import com.admin.domain.model.MonumentListDto
 import com.admin.domain.model.MonumentListItemDto
+import com.admin.domain.repository.MonumentRepository
+import com.admin.domain.repository.RefreshStrategy
 import com.admin.monuments.error.ErrorHandler
 import com.admin.monuments.mapper.toView
 import com.admin.monuments.model.MonumentListItemView
 import com.admin.monuments.model.MonumentListView
+import kotlinx.coroutines.launch
 
-class MainPresenter(private val getMonumentListUseCase: GetMonumentListUseCase,
-                    errorHandler: ErrorHandler,
-                    view: MainPresenter.View):
-                    Presenter<MainPresenter.View>(errorHandler,view){
+class MainPresenter(
+        private val repository: MonumentRepository,
+        errorHandler: ErrorHandler,
+        executor: com.admin.monuments.executor.Executor,
+        view: View):
+        Presenter<MainPresenter.View>(errorHandler,executor = executor, view = view){
 
-    override fun initialize() {
+    override fun attach() {
         getMonumentItems()
-    }
-
-    override fun resume() {
-        //Nothing to do yet
-    }
-
-    override fun stop() {
-        //Nothing to do yet
-    }
-
-    override fun destroy() {
-        getMonumentListUseCase.clear()
     }
 
     private fun getMonumentItems() {
@@ -36,9 +27,15 @@ class MainPresenter(private val getMonumentListUseCase: GetMonumentListUseCase,
         }
         view.hideProgress()*/
 
-
-        view.showProgress()
-        getMonumentListUseCase.execute(
+        scope.launch {
+            view.showProgress()
+            execute { repository.getMonumentList(RefreshStrategy.NETWORK) }.fold(
+                    error = {view.showError(it.toString())},
+                    success = {showMonumentList(it)}
+            )
+            view.hideProgress()
+        }
+        /*getMonumentListUseCase.execute(
                 onNext = {
                     showMonumentList(it)
                 },
@@ -48,7 +45,7 @@ class MainPresenter(private val getMonumentListUseCase: GetMonumentListUseCase,
                 onError = onError{
                     view.showError(it)
                 }
-        )
+        )*/
     }
 
     fun fakeMonumentItems(): List<MonumentListView> = listOf(

@@ -41,8 +41,8 @@ dependencies {
     implementation ("com.squareup.okhttp3:okhttp:3.9.1")
     implementation (Libraries.okHttpInterceptor)
 
-    implementation (Libraries.rxjava)
-    implementation (Libraries.rxRetrofit)
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.2.1")
+    implementation ("com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2")
 
     testImplementation (Libraries.jUnit)
     testImplementation (Libraries.mockito)

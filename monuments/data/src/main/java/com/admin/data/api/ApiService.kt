@@ -5,19 +5,17 @@ import com.admin.domain.constants.Constants.Companion.endpointUrl
 import com.admin.domain.constants.buildType
 import com.admin.domain.model.MonumentItemDto
 import com.admin.domain.model.MonumentListDto
-import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface ApiService {
     companion object {
-        val ENDPOINT = "${endpointUrl(buildType(BuildConfig.BUILD_TYPE))}"
-        const val DEFAULT_SC_DEVICE = "json"
+        val ENDPOINT = endpointUrl(buildType(BuildConfig.BUILD_TYPE))
     }
 
     @GET("/points")
-    fun getMonumentList(): Observable<MonumentListDto>
+    suspend fun getMonumentList(): MonumentListDto
 
     @GET("/points/{id}")
-    fun getMonumentItem(@Path("id")id:Long): Observable<MonumentItemDto>
+    suspend fun getMonumentItem(@Path("id")id:Long): MonumentItemDto
 }

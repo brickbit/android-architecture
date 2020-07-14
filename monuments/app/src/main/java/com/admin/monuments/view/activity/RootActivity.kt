@@ -41,23 +41,12 @@ abstract class RootActivity<out V : Presenter.View> : AppCompatActivity(), Kodei
         initializeDI()
         initializeUI()
         registerListeners()
-
-        presenter.initialize()
-    }
-
-    override fun onResume() {
-        super.onResume()
-        presenter.resume()
-    }
-
-    override fun onStop() {
-        super.onStop()
-        presenter.stop()
+        presenter.attach()
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        presenter.destroy()
+        presenter.detach()
     }
 
     private fun initializeDI() {
