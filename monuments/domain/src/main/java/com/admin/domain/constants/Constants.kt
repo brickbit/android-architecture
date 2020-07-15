@@ -24,8 +24,8 @@ class Constants {
         }
 
         fun endpointUrl(buildType: BuildType): String = when (buildType) {
-            BuildType.DEBUG -> "http://t21services.herokuapp.com"
-            BuildType.RELEASE -> "http://t21services.herokuapp.com"
+            BuildType.DEBUG -> "https://t21services.herokuapp.com"
+            BuildType.RELEASE -> "https://t21services.herokuapp.com"
         }
     }
 }

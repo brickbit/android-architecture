@@ -1,69 +1,50 @@
 package com.admin.monuments.view.fragment
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import com.github.salomonbrys.kodein.Kodein
-import com.github.salomonbrys.kodein.KodeinInjected
-import com.github.salomonbrys.kodein.KodeinInjector
-import com.github.salomonbrys.kodein.lazy
 import com.admin.monuments.extension.toast
 import com.admin.monuments.presenter.Presenter
-import com.admin.monuments.view.activity.RootActivity
+import org.kodein.di.Kodein
+import org.kodein.di.KodeinAware
+import org.kodein.di.android.subKodein
+import org.kodein.di.android.x.kodein
 
 
 /**
  * RootFragment
  */
-abstract class RootFragment<out V : Presenter.View> : Fragment(), KodeinInjected, Presenter.View {
+abstract class RootFragment<out V : Presenter.View> : Fragment(), KodeinAware, Presenter.View {
 
     abstract val presenter: Presenter<V>
 
     abstract val layoutResourceId: Int
 
-    override val injector = KodeinInjector()
-
     abstract val fragmentModule: Kodein.Module
 
-    val kodein by Kodein.lazy {
-        extend((activity as RootActivity<*>).kodein)
+    override val kodein by subKodein(kodein()) {
         import(fragmentModule)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-        initializeDI()
         initializeUI()
         registerListeners()
 
-        presenter.initialize()
+        presenter.attach()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
             inflater.inflate(layoutResourceId, container, false)
 
-    override fun onResume() {
-        super.onResume()
-        presenter.resume()
-    }
-
-    override fun onStop() {
-        super.onStop()
-        presenter.stop()
-    }
 
     override fun onDestroy() {
         super.onDestroy()
-        presenter.destroy()
-    }
-
-    private fun initializeDI() {
-        inject(kodein)
+        presenter.detach()
     }
 
     abstract fun initializeUI()

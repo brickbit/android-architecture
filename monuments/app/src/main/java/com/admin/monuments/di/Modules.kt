@@ -11,38 +11,32 @@ import com.admin.data.datasource.network.createService
 import com.admin.data.repository.CommonMonumentRepository
 import com.admin.domain.constants.BuildType
 import com.admin.domain.constants.buildType
-import com.github.salomonbrys.kodein.Kodein
-import com.github.salomonbrys.kodein.bind
-import com.github.salomonbrys.kodein.singleton
-import com.admin.domain.executor.Executor
-import com.admin.domain.interactor.monuments.GetMonumentItemUseCase
-import com.admin.domain.interactor.monuments.GetMonumentListUseCase
 import com.admin.domain.repository.MonumentRepository
 import com.admin.monuments.error.ErrorHandler
 import com.admin.monuments.error.AndroidErrorHandler
-import com.admin.monuments.executor.RxExecutor
-import com.github.salomonbrys.kodein.instance
+import com.admin.monuments.executor.CoroutinesExecutor
+import com.admin.monuments.executor.Executor
+import org.kodein.di.Kodein
+import org.kodein.di.generic.bind
+import org.kodein.di.generic.instance
+import org.kodein.di.generic.singleton
 
 /**
  * Modules
  */
-fun appModule(context: Context) = Kodein.Module {
+fun appModule(context: Context) = Kodein.Module("App") {
     bind<Context>() with singleton { context }
-    bind<Executor>() with singleton { RxExecutor() }
+    bind<Executor>() with singleton { CoroutinesExecutor() }
     bind<ErrorHandler>() with singleton { AndroidErrorHandler(context = context) }
-
     bind<BuildType>() with singleton { buildType(BuildConfig.BUILD_TYPE) }
 
 }
 
-val domainModule = Kodein.Module {
-    bind() from singleton { GetMonumentListUseCase(repository = instance(), executor = instance()) }
-    bind() from singleton { GetMonumentItemUseCase(repository = instance(), executor = instance()) }
-
+val domainModule = Kodein.Module("Domain") {
     // Add here data dependencies
 }
 
-val dataModule = Kodein.Module {
+val dataModule = Kodein.Module("Data") {
     //Database
     bind<DatabaseDataSource>() with singleton { RealDabaseDataSource() }
 

@@ -3,12 +3,11 @@ plugins {
     kotlin(Plugins.kotlinAndroid)
     kotlin(Plugins.androidExtensions)
     kotlin(Plugins.kotlinKapt)
-    id(Plugins.realm)
 }
 
 
 android {
-    compileSdkVersion(AndroidSdk.compile)
+    compileSdkVersion(28)
     defaultConfig {
         applicationId = AndroidSdk.applicationId
         minSdkVersion(AndroidSdk.min)
@@ -35,18 +34,18 @@ dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include"  to listOf("*.jar"))))
     implementation (Libraries.kotlinStdLib)
 
-    implementation ("com.android.support:appcompat-v7:27.1.1")
-    implementation ("com.android.support:design:27.1.1")
-    implementation ("com.android.support:cardview-v7:27.1.1")
-    implementation ("com.android.support.constraint:constraint-layout:1.1.3")
+    implementation (Libraries.appCompat)
+    implementation (Libraries.material)
+    implementation (Libraries.cardview)
+    implementation (Libraries.constraintLayout)
 
     implementation (Libraries.glide)
 
     implementation (Libraries.kodein)
     implementation (Libraries.kodeinAndroid)
 
-    implementation (Libraries.rxjava)
-    implementation (Libraries.rxandroid)
+    implementation (Libraries.coroutines)
+    implementation (Libraries.coroutinesAndroid)
 
     testImplementation (Libraries.jUnit)
     testImplementation (Libraries.mockito)

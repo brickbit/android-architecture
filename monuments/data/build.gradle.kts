@@ -2,7 +2,6 @@ plugins {
     id(Plugins.androidLibrary)
     kotlin(Plugins.kotlinAndroid)
     kotlin(Plugins.kotlinKapt)
-    id(Plugins.realm)
 }
 
 android {
@@ -38,11 +37,11 @@ dependencies {
 
     implementation (Libraries.retrofit)
     implementation (Libraries.gson)
-    implementation ("com.squareup.okhttp3:okhttp:3.9.1")
+    implementation (Libraries.okHttp)
     implementation (Libraries.okHttpInterceptor)
 
-    implementation (Libraries.rxjava)
-    implementation (Libraries.rxRetrofit)
+    implementation (Libraries.coroutines)
+    implementation (Libraries.retrofitAdapter)
 
     testImplementation (Libraries.jUnit)
     testImplementation (Libraries.mockito)

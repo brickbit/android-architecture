@@ -1,12 +1,11 @@
 package com.admin.monuments.view.app
 
 import android.app.Application
-import com.github.salomonbrys.kodein.Kodein
-import com.github.salomonbrys.kodein.KodeinAware
-import com.github.salomonbrys.kodein.lazy
 import com.admin.monuments.di.appModule
 import com.admin.monuments.di.dataModule
 import com.admin.monuments.di.domainModule
+import org.kodein.di.Kodein
+import org.kodein.di.KodeinAware
 
 /**
  * App.
