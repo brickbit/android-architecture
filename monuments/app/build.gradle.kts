@@ -7,7 +7,7 @@ plugins {
 
 
 android {
-    compileSdkVersion(AndroidSdk.compile)
+    compileSdkVersion(28)
     defaultConfig {
         applicationId = AndroidSdk.applicationId
         minSdkVersion(AndroidSdk.min)
