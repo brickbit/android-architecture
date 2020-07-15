@@ -1,14 +1,14 @@
 package com.admin.data.datasource.database
 
-import com.admin.domain.model.MonumentItemDto
-import com.admin.domain.model.MonumentListDto
+import com.admin.domain.model.MonumentItemDomain
+import com.admin.domain.model.MonumentListDomain
 
-class RealDabaseDataSource: DatabaseDataSource {
-    override suspend fun getMonumentList(): MonumentListDto {
+class DabaseDataSourceImpl: DatabaseDataSource {
+    override suspend fun getMonumentList(): MonumentListDomain {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override suspend fun getMonumentItem(): MonumentItemDto {
+    override suspend fun getMonumentItem(): MonumentItemDomain {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 

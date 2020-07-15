@@ -1,12 +1,11 @@
 package com.admin.monuments.mapper
 
-import android.util.Log
-import com.admin.domain.model.MonumentItemDto
-import com.admin.domain.model.MonumentListItemDto
+import com.admin.domain.model.MonumentItemDomain
+import com.admin.domain.model.MonumentListItemDomain
 import com.admin.monuments.model.MonumentListItemView
 import com.admin.monuments.model.MonumentView
 
 
-fun MonumentListItemDto.toView(): MonumentListItemView = MonumentListItemView(id,title,geocoordinates)
+fun MonumentListItemDomain.toView(): MonumentListItemView = MonumentListItemView(id,title,geocoordinates)
 
-fun MonumentItemDto.toView(): MonumentView = MonumentView(id,title,address,transport,email,geocoordinates,description,phone)
+fun MonumentItemDomain.toView(): MonumentView = MonumentView(id,title,address,transport,email,geocoordinates,description,phone)

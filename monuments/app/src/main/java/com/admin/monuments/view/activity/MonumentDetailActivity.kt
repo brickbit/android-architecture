@@ -4,14 +4,14 @@ import android.util.Log
 import android.view.View
 import com.admin.monuments.R
 import com.admin.monuments.model.MonumentView
-import com.admin.monuments.presenter.DetailPresenter
+import com.admin.monuments.presenter.MonumentDetailPresenter
 import kotlinx.android.synthetic.main.activity_detail.*
 import org.kodein.di.Kodein
 import org.kodein.di.generic.bind
 import org.kodein.di.generic.instance
 import org.kodein.di.generic.provider
 
-class DetailActivity :  RootActivity<DetailPresenter.View>(), DetailPresenter.View {
+class MonumentDetailActivity :  RootActivity<MonumentDetailPresenter.View>(), MonumentDetailPresenter.View {
 
     override fun getId(): Long {
         return intent.getStringExtra(CATEGORY_ID_KEY).toLong()
@@ -23,16 +23,16 @@ class DetailActivity :  RootActivity<DetailPresenter.View>(), DetailPresenter.Vi
 
     override val progress: View by lazy { progressViewDetail }
 
-    override val presenter: DetailPresenter by instance<DetailPresenter>()
+    override val presenter: MonumentDetailPresenter by instance<MonumentDetailPresenter>()
 
     override val layoutResourceId: Int = R.layout.activity_detail
 
-    override val activityModule: Kodein.Module = Kodein.Module(DetailActivity.toString()) {
-        bind<DetailPresenter>() with provider {
-            DetailPresenter(
+    override val activityModule: Kodein.Module = Kodein.Module("MonumentDetailActivity") {
+        bind<MonumentDetailPresenter>() with provider {
+            MonumentDetailPresenter(
                     executor = instance(),
                     repository = instance(),
-                    view = this@DetailActivity,
+                    view = this@MonumentDetailActivity,
                     errorHandler = instance()
             )
         }

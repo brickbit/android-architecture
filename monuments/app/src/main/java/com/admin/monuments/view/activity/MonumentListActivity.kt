@@ -5,7 +5,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.admin.monuments.R
 import com.admin.monuments.model.MonumentListItemView
 import com.admin.monuments.navigator.navigateToDetailActivity
-import com.admin.monuments.presenter.MainPresenter
+import com.admin.monuments.presenter.MonumentListPresenter
 import com.admin.monuments.view.adapter.MonumentAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 import org.kodein.di.Kodein
@@ -13,20 +13,20 @@ import org.kodein.di.generic.bind
 import org.kodein.di.generic.instance
 import org.kodein.di.generic.provider
 
-class MainActivity : RootActivity<MainPresenter.View>(), MainPresenter.View {
+class MonumentListActivity : RootActivity<MonumentListPresenter.View>(), MonumentListPresenter.View {
 
     override val progress: View by lazy { progressView }
 
-    override val presenter: MainPresenter by instance<MainPresenter>()
+    override val presenter: MonumentListPresenter by instance<MonumentListPresenter>()
 
     override val layoutResourceId: Int= R.layout.activity_main
 
-    override val activityModule: Kodein.Module= Kodein.Module("") {
-        bind<MainPresenter>() with provider {
-            MainPresenter(
+    override val activityModule: Kodein.Module= Kodein.Module("MonumentListActivity") {
+        bind<MonumentListPresenter>() with provider {
+            MonumentListPresenter(
                     executor = instance(),
                     repository = instance(),
-                    view = this@MainActivity,
+                    view = this@MonumentListActivity,
                     errorHandler = instance()
             )
         }
