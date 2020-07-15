@@ -39,8 +39,7 @@ object Libraries {
         const val material = "1.0.0"
 
         const val glide = "4.9.0"
-        const val kodein = "4.1.0"
-        const val kodeinAndroid = "4.1.0"
+        const val kodein = "6.1.0"
 
         const val coroutinesVersion = "1.2.1"
 
@@ -65,8 +64,8 @@ object Libraries {
     const val material = "com.google.android.material:material:${Versions.material}"
 
     const val glide = ("com.github.bumptech.glide:glide:${Versions.glide}")
-    const val kodein = ("com.github.salomonbrys.kodein:kodein:${Versions.kodein}")
-    const val kodeinAndroid = ("com.github.salomonbrys.kodein:kodein-android:${Versions.kodeinAndroid}")
+    const val kodein = ("org.kodein.di:kodein-di-generic-jvm:${Versions.kodein}")
+    const val kodeinAndroid = ("org.kodein.di:kodein-di-framework-android-x:${Versions.kodein}")
 
     const val coroutines ="org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutinesVersion}"
     const val coroutinesAndroid = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutinesVersion}"

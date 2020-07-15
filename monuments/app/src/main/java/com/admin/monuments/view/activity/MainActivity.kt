@@ -1,27 +1,27 @@
 package com.admin.monuments.view.activity
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
-import android.widget.LinearLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.admin.monuments.R
 import com.admin.monuments.model.MonumentListItemView
-import com.admin.monuments.model.MonumentListView
 import com.admin.monuments.navigator.navigateToDetailActivity
 import com.admin.monuments.presenter.MainPresenter
 import com.admin.monuments.view.adapter.MonumentAdapter
-import com.github.salomonbrys.kodein.Kodein
-import com.github.salomonbrys.kodein.bind
-import com.github.salomonbrys.kodein.instance
-import com.github.salomonbrys.kodein.provider
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.view_progress.*
+import org.kodein.di.Kodein
+import org.kodein.di.generic.bind
+import org.kodein.di.generic.instance
+import org.kodein.di.generic.provider
 
 class MainActivity : RootActivity<MainPresenter.View>(), MainPresenter.View {
 
-    override val presenter: MainPresenter by instance()
+    override val progress: View by lazy { progressView }
+
+    override val presenter: MainPresenter by instance<MainPresenter>()
 
     override val layoutResourceId: Int= R.layout.activity_main
 
-    override val activityModule: Kodein.Module= Kodein.Module {
+    override val activityModule: Kodein.Module= Kodein.Module("") {
         bind<MainPresenter>() with provider {
             MainPresenter(
                     executor = instance(),
@@ -56,14 +56,6 @@ class MainActivity : RootActivity<MainPresenter.View>(), MainPresenter.View {
 
     private val monumentAdapter = MonumentAdapter {
         presenter.onMonumentItemClicked(it)
-    }
-
-    override fun showProgress() {
-        progress.show()
-    }
-
-    override fun hideProgress() {
-        progress.hide()
     }
 
 }

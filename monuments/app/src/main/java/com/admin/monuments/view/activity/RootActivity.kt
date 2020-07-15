@@ -4,33 +4,30 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.view.View
 import android.widget.Toast
-import com.github.salomonbrys.kodein.Kodein
-import com.github.salomonbrys.kodein.KodeinInjected
-import com.github.salomonbrys.kodein.KodeinInjector
-import com.github.salomonbrys.kodein.lazy
+import androidx.fragment.app.Fragment
 import com.admin.monuments.extension.hideMe
 import com.admin.monuments.extension.showMe
 import com.admin.monuments.extension.toast
 import com.admin.monuments.presenter.Presenter
-import com.admin.monuments.view.app.App
+import org.kodein.di.Kodein
+import org.kodein.di.KodeinAware
+import org.kodein.di.android.kodein
+import org.kodein.di.android.subKodein
 
 /**
  * RootActivity
  */
-abstract class RootActivity<out V : Presenter.View> : AppCompatActivity(), KodeinInjected, Presenter.View {
+abstract class RootActivity<out V : Presenter.View> : AppCompatActivity(), KodeinAware, Presenter.View {
 
-    //abstract val progress: View
+    abstract val progress: View
 
     abstract val presenter: Presenter<V>
 
     abstract val layoutResourceId: Int
 
-    override val injector = KodeinInjector()
-
     abstract val activityModule: Kodein.Module
 
-    val kodein by Kodein.lazy {
-        extend((application as App).kodein)
+    override val kodein by subKodein(kodein()) {
         import(activityModule)
     }
 
@@ -38,7 +35,6 @@ abstract class RootActivity<out V : Presenter.View> : AppCompatActivity(), Kodei
         super.onCreate(savedInstanceState)
         setContentView(layoutResourceId)
 
-        initializeDI()
         initializeUI()
         registerListeners()
         presenter.attach()
@@ -47,10 +43,6 @@ abstract class RootActivity<out V : Presenter.View> : AppCompatActivity(), Kodei
     override fun onDestroy() {
         super.onDestroy()
         presenter.detach()
-    }
-
-    private fun initializeDI() {
-        inject(kodein)
     }
 
     abstract fun initializeUI()
@@ -65,7 +57,14 @@ abstract class RootActivity<out V : Presenter.View> : AppCompatActivity(), Kodei
 
     override fun showMessage(messageId: Int) = toast(messageId, Toast.LENGTH_SHORT)
 
-    //override fun showProgress() = progress.showMe()
+    override fun showProgress() = progress.showMe()
 
-    //override fun hideProgress() = progress.hideMe()
+    override fun hideProgress() = progress.hideMe()
+
+    protected fun addFragment(containerViewId: Int, fragment: Fragment) {
+        val fragmentTransaction = this.supportFragmentManager.beginTransaction()
+        fragmentTransaction.add(containerViewId, fragment)
+        fragmentTransaction.commit()
+    }
+
 }

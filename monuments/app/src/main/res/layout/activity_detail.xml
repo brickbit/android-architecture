@@ -117,5 +117,7 @@
             tools:text="Phone" />
 
     </LinearLayout>
-    <include layout="@layout/view_progress" />
+    <include
+        android:id="@+id/progressViewDetail"
+        layout="@layout/view_progress" />
 </FrameLayout>

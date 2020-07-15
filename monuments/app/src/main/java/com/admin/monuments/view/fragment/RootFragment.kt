@@ -6,38 +6,32 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import com.github.salomonbrys.kodein.Kodein
-import com.github.salomonbrys.kodein.KodeinInjected
-import com.github.salomonbrys.kodein.KodeinInjector
-import com.github.salomonbrys.kodein.lazy
 import com.admin.monuments.extension.toast
 import com.admin.monuments.presenter.Presenter
-import com.admin.monuments.view.activity.RootActivity
+import org.kodein.di.Kodein
+import org.kodein.di.KodeinAware
+import org.kodein.di.android.subKodein
+import org.kodein.di.android.x.kodein
 
 
 /**
  * RootFragment
  */
-abstract class RootFragment<out V : Presenter.View> : Fragment(), KodeinInjected, Presenter.View {
+abstract class RootFragment<out V : Presenter.View> : Fragment(), KodeinAware, Presenter.View {
 
     abstract val presenter: Presenter<V>
 
     abstract val layoutResourceId: Int
 
-    override val injector = KodeinInjector()
-
     abstract val fragmentModule: Kodein.Module
 
-    val kodein by Kodein.lazy {
-        extend((activity as RootActivity<*>).kodein)
+    override val kodein by subKodein(kodein()) {
         import(fragmentModule)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-        initializeDI()
         initializeUI()
         registerListeners()
 
@@ -51,10 +45,6 @@ abstract class RootFragment<out V : Presenter.View> : Fragment(), KodeinInjected
     override fun onDestroy() {
         super.onDestroy()
         presenter.detach()
-    }
-
-    private fun initializeDI() {
-        inject(kodein)
     }
 
     abstract fun initializeUI()

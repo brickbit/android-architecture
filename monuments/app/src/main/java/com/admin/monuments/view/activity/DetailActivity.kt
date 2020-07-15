@@ -1,17 +1,18 @@
 package com.admin.monuments.view.activity
 
 import android.util.Log
+import android.view.View
 import com.admin.monuments.R
 import com.admin.monuments.model.MonumentView
 import com.admin.monuments.presenter.DetailPresenter
-import com.github.salomonbrys.kodein.Kodein
-import com.github.salomonbrys.kodein.bind
-import com.github.salomonbrys.kodein.instance
-import com.github.salomonbrys.kodein.provider
 import kotlinx.android.synthetic.main.activity_detail.*
-import kotlinx.android.synthetic.main.view_progress.*
+import org.kodein.di.Kodein
+import org.kodein.di.generic.bind
+import org.kodein.di.generic.instance
+import org.kodein.di.generic.provider
 
 class DetailActivity :  RootActivity<DetailPresenter.View>(), DetailPresenter.View {
+
     override fun getId(): Long {
         return intent.getStringExtra(CATEGORY_ID_KEY).toLong()
     }
@@ -20,11 +21,13 @@ class DetailActivity :  RootActivity<DetailPresenter.View>(), DetailPresenter.Vi
         const val CATEGORY_ID_KEY = "CATEGORY_ID_KEY"
     }
 
-    override val presenter: DetailPresenter by instance()
+    override val progress: View by lazy { progressViewDetail }
+
+    override val presenter: DetailPresenter by instance<DetailPresenter>()
 
     override val layoutResourceId: Int = R.layout.activity_detail
 
-    override val activityModule: Kodein.Module = Kodein.Module {
+    override val activityModule: Kodein.Module = Kodein.Module(DetailActivity.toString()) {
         bind<DetailPresenter>() with provider {
             DetailPresenter(
                     executor = instance(),
@@ -42,14 +45,6 @@ class DetailActivity :  RootActivity<DetailPresenter.View>(), DetailPresenter.Vi
 
     override fun registerListeners() {
         //Nothing to do here yet
-    }
-
-    override fun showProgress() {
-        progress.show()
-    }
-
-    override fun hideProgress() {
-        progress.hide()
     }
 
     override fun showItem(monumentView: MonumentView) {
