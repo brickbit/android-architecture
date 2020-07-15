@@ -1,6 +1,7 @@
 package com.admin.monuments.view.activity
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.widget.LinearLayout
+import androidx.recyclerview.widget.RecyclerView
 import com.admin.monuments.R
 import com.admin.monuments.model.MonumentListItemView
 import com.admin.monuments.model.MonumentListView
@@ -32,7 +33,7 @@ class MainActivity : RootActivity<MainPresenter.View>(), MainPresenter.View {
     }
     override fun initializeUI() {
         rv_monumentList.adapter = monumentAdapter
-        rv_monumentList.layoutManager = LinearLayoutManager(this, LinearLayout.VERTICAL, false)
+        rv_monumentList.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
 
     }
 
