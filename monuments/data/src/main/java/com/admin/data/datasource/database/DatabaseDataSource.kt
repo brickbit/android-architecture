@@ -6,4 +6,7 @@ import com.admin.domain.model.MonumentMainListDomain
 interface DatabaseDataSource{
     suspend fun getMonumentList(): MonumentMainListDomain
     suspend fun getMonumentItem(): MonumentDetailDomain
+
+    suspend fun saveMonumentList(list: MonumentMainListDomain)
+    suspend fun saveMonumentItem(item: MonumentDetailDomain)
 }
