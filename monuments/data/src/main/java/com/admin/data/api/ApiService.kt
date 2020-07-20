@@ -3,8 +3,8 @@ package com.admin.data.api
 import com.admin.data.BuildConfig
 import com.admin.domain.constants.Constants.Companion.endpointUrl
 import com.admin.domain.constants.buildType
-import com.admin.domain.model.MonumentItemDto
-import com.admin.domain.model.MonumentListDto
+import com.admin.domain.model.MonumentDetailDomain
+import com.admin.domain.model.MonumentMainListDomain
 import retrofit2.http.GET
 import retrofit2.http.Path
 
@@ -14,8 +14,8 @@ interface ApiService {
     }
 
     @GET("/points")
-    suspend fun getMonumentList(): MonumentListDto
+    suspend fun getMonumentList(): MonumentMainListDomain
 
     @GET("/points/{id}")
-    suspend fun getMonumentItem(@Path("id")id:Long): MonumentItemDto
+    suspend fun getMonumentItem(@Path("id")id:Long): MonumentDetailDomain
 }

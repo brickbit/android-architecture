@@ -1,4 +1,4 @@
-package com.admin.monuments.view.app
+package com.admin.monuments.app
 
 import android.app.Application
 import com.admin.monuments.di.appModule

@@ -1,9 +1,9 @@
 package com.admin.data.datasource.database
 
-import com.admin.domain.model.MonumentItemDto
-import com.admin.domain.model.MonumentListDto
+import com.admin.domain.model.MonumentDetailDomain
+import com.admin.domain.model.MonumentMainListDomain
 
 interface DatabaseDataSource{
-    suspend fun getMonumentList(): MonumentListDto
-    suspend fun getMonumentItem(): MonumentItemDto
+    suspend fun getMonumentList(): MonumentMainListDomain
+    suspend fun getMonumentItem(): MonumentDetailDomain
 }

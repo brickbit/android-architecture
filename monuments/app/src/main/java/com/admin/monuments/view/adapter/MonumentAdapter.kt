@@ -3,7 +3,6 @@ package com.admin.monuments.view.adapter
 import android.view.View
 import com.admin.monuments.R
 import com.admin.monuments.model.MonumentListItemView
-import com.admin.monuments.model.MonumentListView
 import kotlinx.android.synthetic.main.monument.view.*
 
 class MonumentAdapter(onItemClick: (MonumentListItemView) -> Unit)

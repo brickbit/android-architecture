@@ -15,7 +15,7 @@ abstract class RootAdapter<T>(protected val items: MutableList<T> = mutableListO
 
     abstract val itemLayoutId: Int
 
-    abstract fun viewHolder(view: View): RootAdapter.RootViewHolder<T>
+    abstract fun viewHolder(view: View): RootViewHolder<T>
 
     override fun getItemCount(): Int = items.size
 
