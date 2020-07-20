@@ -45,7 +45,7 @@ val dataModule = Kodein.Module("Data") {
         createService<ApiService>(buildType = instance(), endPoint = ApiService.ENDPOINT)
     }
     //Data Sources
-    bind<NetworkDataSource>() with singleton { NetworkDataSourceImpl(apiservice = instance()) }
+    bind<NetworkDataSource>() with singleton { NetworkDataSourceImpl(apiService = instance()) }
 
     //Repository
     bind<Repository>() with singleton { RepositoryImpl(network = instance()/*, database = instance()*/) }

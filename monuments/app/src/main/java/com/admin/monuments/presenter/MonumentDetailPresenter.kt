@@ -1,6 +1,6 @@
 package com.admin.monuments.presenter
 
-import com.admin.domain.model.MonumentItemDomain
+import com.admin.domain.model.MonumentDetailDomain
 import com.admin.domain.repository.Repository
 import com.admin.domain.repository.RefreshStrategy
 import com.admin.monuments.error.ErrorHandler
@@ -31,8 +31,8 @@ class MonumentDetailPresenter(private val repository: Repository,
         }
     }
 
-    private  fun showItem(monumentItemDto: MonumentItemDomain) {
-        view.showItem(monumentItemDto.toView())
+    private  fun showItem(monumentDetailDto: MonumentDetailDomain) {
+        view.showItem(monumentDetailDto.toView())
     }
 
 

@@ -9,21 +9,12 @@ sealed class Either<L, R> {
         override fun toString(): String = "Right $sucess"
     }
 
-    infix fun <Rp> bind(f: (R) -> (Either<L, Rp>)): Either<L, Rp> {
-        return when (this) {
-            is Left<L, R> -> Left(this.error)
-            is Right<L, R> -> f(this.sucess)
-        }
-    }
-
     infix fun <Rp> map(f: (R) -> (Either<L, Rp>)): Either<L, Rp> {
         return when (this) {
             is Left<L, R> -> Left(this.error)
             is Right<L, R> -> f(this.sucess)
         }
     }
-
-    infix fun <Rp> seq(e: Either<L, Rp>): Either<L, Rp> = e
 
     fun fold(error:(L) -> Unit, success: (R) -> Unit) {
         when (this) {

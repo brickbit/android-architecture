@@ -1,7 +1,7 @@
 package com.admin.monuments.presenter
 
-import com.admin.domain.model.MonumentListDomain
-import com.admin.domain.model.MonumentListItemDomain
+import com.admin.domain.model.MonumentMainListDomain
+import com.admin.domain.model.MonumentMainItemDomain
 import com.admin.domain.repository.Repository
 import com.admin.domain.repository.RefreshStrategy
 import com.admin.monuments.error.ErrorHandler
@@ -35,16 +35,16 @@ class MonumentListPresenter(
         view.navigateToMonumentItem(monumentListItemView.id.toString())
     }
 
-    private fun showMonumentList(monumentListDomain: MonumentListDomain) {
-        val itemList = toListItem(monumentListDomain)
+    private fun showMonumentList(monumentMainListDomain: MonumentMainListDomain) {
+        val itemList = toListItem(monumentMainListDomain)
         itemList.map {
             view.showMonumentList(it.toView())
         }
     }
 
-    private fun toListItem(monumentListDomain: MonumentListDomain): List<MonumentListItemDomain> {
-        val list = monumentListDomain.list.mapIndexed { _, monumentItemDto ->
-            MonumentListItemDomain(monumentItemDto.id,monumentItemDto.title,monumentItemDto.geocoordinates)
+    private fun toListItem(monumentMainListDomain: MonumentMainListDomain): List<MonumentMainItemDomain> {
+        val list = monumentMainListDomain.list.mapIndexed { _, monumentItemDto ->
+            MonumentMainItemDomain(monumentItemDto.id,monumentItemDto.title,monumentItemDto.geocoordinates)
         }
         return list
     }
