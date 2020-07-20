@@ -1,5 +1,6 @@
 package com.admin.data.repository
 
+import com.admin.data.datasource.database.DatabaseDataSource
 import com.admin.data.datasource.network.NetworkDataSource
 import com.admin.domain.model.Either
 import com.admin.domain.model.MonumentDetailDomain
@@ -8,8 +9,8 @@ import com.admin.domain.model.Result
 import com.admin.domain.repository.Repository
 import com.admin.domain.repository.RefreshStrategy
 
-class RepositoryImpl(/*private val database: DatabaseDataSource,*/
-                               private val network: NetworkDataSource): Repository {
+class RepositoryImpl(private val database: DatabaseDataSource,
+                     private val network: NetworkDataSource): Repository {
 
     override suspend fun getMonumentItem(id:Long, refreshStrategy: RefreshStrategy): Either<Result.Error, MonumentDetailDomain> {
         return when (refreshStrategy) {
