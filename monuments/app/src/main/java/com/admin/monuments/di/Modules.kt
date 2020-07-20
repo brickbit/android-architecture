@@ -1,10 +1,13 @@
 package com.admin.monuments.di
 
 import android.content.Context
+import androidx.room.Room
 import com.admin.data.BuildConfig
 import com.admin.data.api.ApiService
 import com.admin.data.datasource.database.DatabaseDataSource
 import com.admin.data.datasource.database.DabaseDataSourceImpl
+import com.admin.data.datasource.database.MonumentDatabase
+import com.admin.data.datasource.database.dao.MonumentDao
 import com.admin.data.datasource.network.NetworkDataSource
 import com.admin.data.datasource.network.NetworkDataSourceImpl
 import com.admin.data.datasource.network.createService
@@ -18,6 +21,7 @@ import com.admin.monuments.executor.CoroutinesExecutor
 import com.admin.monuments.executor.Executor
 import org.kodein.di.Kodein
 import org.kodein.di.generic.bind
+import org.kodein.di.generic.eagerSingleton
 import org.kodein.di.generic.instance
 import org.kodein.di.generic.singleton
 
@@ -29,7 +33,11 @@ fun appModule(context: Context) = Kodein.Module("App") {
     bind<Executor>() with singleton { CoroutinesExecutor() }
     bind<ErrorHandler>() with singleton { AndroidErrorHandler(context = context) }
     bind<BuildType>() with singleton { buildType(BuildConfig.BUILD_TYPE) }
-
+    bind<MonumentDatabase>() with singleton { Room.databaseBuilder(
+            context,
+            MonumentDatabase::class.java,
+            "monument-db"
+    ).build()}
 }
 
 val domainModule = Kodein.Module("Domain") {
