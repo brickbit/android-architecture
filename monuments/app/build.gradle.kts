@@ -47,6 +47,10 @@ dependencies {
     implementation (Libraries.coroutines)
     implementation (Libraries.coroutinesAndroid)
 
+    implementation ("androidx.room:room-runtime:2.2.5")
+    kapt ("androidx.room:room-compiler:2.2.5")
+    implementation ("androidx.room:room-ktx:2.2.5")
+
     testImplementation (Libraries.jUnit)
     testImplementation (Libraries.mockito)
     androidTestImplementation (Libraries.mockitoAndroid)
